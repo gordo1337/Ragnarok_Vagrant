@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
     db.vm.box = "centos/8"
     db.vm.hostname = "dbmiljo.local"
     config.vm.provider "virtualbox" do |v| #v 
-      v.memory = "4024"
+      v.memory = "1024"
       v.cpus =" 1"
     end
     #config.vm.network "private_network", type: "dhcp"
