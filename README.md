@@ -1,5 +1,6 @@
 #README.md RAGNARÖK 
-
+#IMPORTANT# When you have cloned the repository you have to change UID (501) to you UID in Ragnarok_Vagrant/.vagrant/machines/dbmiljo/virtualbox/creatoruid 
+Ragnarok_Vagrant/.vagrant/machines/nextmiljo/virtualbox/creatoruid
 
 █▀█ ▄▀█ █▀▀ █▄░█ ▄▀█ █▀█ █▀█ █▄▀   ▀▄▀   █░█ ▄▀█ █▀▀ █▀█ ▄▀█ █▄░█ ▀█▀   ▀▄▀   █▄░█ █▀▀ ▀▄▀ ▀█▀ █▀▀ █░░ █▀█ █░█ █▀▄
 █▀▄ █▀█ █▄█ █░▀█ █▀█ █▀▄ █▄█ █░█   █░█   ▀▄▀ █▀█ █▄█ █▀▄ █▀█ █░▀█ ░█░   █░█   █░▀█ ██▄ █░█ ░█░ █▄▄ █▄▄ █▄█ █▄█ █▄▀
