@@ -95,29 +95,18 @@ Vagrant.configure("2") do |config|
       curl https://Nextclouddownload.nextcloud.com/server/releases/nextcloud-19.0.0.zip -o /var/www/html/nextcloud-19.0.0.zip
       sudo unzip /var/www/html/nextcloud-19.0.0.zip
       sudo dnf install -y unzip 
-      sudo yum install -y policycoreutils-python-utils 
-      sudo mkdir /etc/httpd/conf.d/nextcloud.conf
-      sudo vi /etc/httpd/conf.d/nextcloud.conf/ALIAS.D
-      sudo mkdir /var/www/html/nextcloud/data
-      sudo chown -R apache:apache nextcloud
+      sudo yum install -y policycoreutils-python-utils
       sudo mv /tmp/nextcloud /var/www/html/
       sudo cd .. /var/www/html/nextcloud
       sudo chown -R apache:apache /var/www/html/nextcloud/
       sudo chgrp -R apache /var/lib/php/{opcache,session,wsdlcache}
       sudo yum install -y policycoreutils-python-utils
-      semanage fcontext -a -t httpd_sys_rw_content_t '/var/www/html/nextcloud/data(/.*)?'
-      semanage fcontext -a -t httpd_sys_rw_content_t '/var/www/html/nextcloud/config(/.*)?'
-      semanage fcontext -a -t httpd_sys_rw_content_t '/var/www/html/nextcloud/apps(/.*)?'
-      semanage fcontext -a -t httpd_sys_rw_content_t '/var/www/html/nextcloud/.htaccess'
-      semanage fcontext -a -t httpd_sys_rw_content_t '/var/www/html/nextcloud/.user.ini'
-      sudo restorecon -Rv '/var/www/html/nextcloud/'
       setsebool -P httpd_can_network_connect_db 1
-      setsebool -P httpd_execmem 1
+      setsebool -P httpd_execmem 
       sed -i '/^memory_limit =/s/=.*/= 512M/' /etc/php.ini
       sudo yum install php-xmlwriter 
       yum install -y php-opcache
       yum install -y redis
-      #dnf install -y dhcp-server
 
       SHELL
     
