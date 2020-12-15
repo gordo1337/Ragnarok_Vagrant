@@ -92,14 +92,14 @@ Vagrant.configure("2") do |config|
       dnf install -y yum 
       yum install mariadb-server php-mysqlnd
       cd /tmp
-      sudo curl -o nextcloud-17-latest.tar.bz2 https://download.nextcloud.com/server/releases/latest-17.tar.bz2 
-      sudo tar -xvjf nextcloud-17-latest.tar.bz2
-      dnf install -y nextcloud-17-latest.tar.bz2 
+      curl https://Nextclouddownload.nextcloud.com/server/releases/nextcloud-19.0.0.zip -o /var/www/html/nextcloud-19.0.0.zip
+      sudo unzip /var/www/html/nextcloud-19.0.0.zip
+      sudo dnf install -y unzip 
+      sudo yum install -y policycoreutils-python-utils 
       sudo mkdir /etc/httpd/conf.d/nextcloud.conf
       sudo vi /etc/httpd/conf.d/nextcloud.conf/ALIAS.D
       sudo mkdir /var/www/html/nextcloud/data
       sudo chown -R apache:apache nextcloud
-      sudo rm -y nextcloud-17-latest.tar.bz2
       sudo mv /tmp/nextcloud /var/www/html/
       sudo cd .. /var/www/html/nextcloud
       sudo chown -R apache:apache /var/www/html/nextcloud/
@@ -112,6 +112,16 @@ Vagrant.configure("2") do |config|
       semanage fcontext -a -t httpd_sys_rw_content_t '/var/www/html/nextcloud/.user.ini'
       sudo restorecon -Rv '/var/www/html/nextcloud/'
       setsebool -P httpd_can_network_connect_db 1
+      setsebool -P httpd_execmem 1
+      sed -i '/^memory_limit =/s/=.*/= 512M/' /etc/php.ini
+      sudo yum install php-xmlwriter 
+      yum install -y php-opcache
+      yum install -y redis
+      #dnf install -y dhcp-server
+
+      SHELL
+    
+end
       setsebool -P httpd_execmem 1
       sed -i '/^memory_limit =/s/=.*/= 512M/' /etc/php.ini
       sudo yum install php-xmlwriter 
