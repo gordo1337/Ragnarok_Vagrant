@@ -50,18 +50,18 @@ Vagrant.configure("2") do |config|
     sudo dnf makecache
     sudo dnf install -y bind bind-utils
     sudo dnf update
-    sudo dnf install epel-release yum-utils unzip curl wget bash-completion policycoreutils-python-utils mlocate bzip2 httpd 
+    sudo dnf install -y epel-release yum-utils unzip curl wget bash-completion policycoreutils-python-utils mlocate bzip2 httpd 
     sudo dnf -y update
     semanage fcontext -a -t httpd_sys_rw_content_t '/var/www/html/nextcloud/data(/.*)?'
     semanage fcontext -a -t httpd_sys_rw_content_t '/var/www/html/nextcloud/config(/.*)?'
     semanage fcontext -a -t httpd_sys_rw_content_t '/var/www/html/nextcloud/apps(/.*)?'
     semanage fcontext -a -t httpd_sys_rw_content_t '/var/www/html/nextcloud/.htaccess'      
     semanage fcontext -a -t httpd_sys_rw_content_t '/var/www/html/nextcloud/.user.ini'
-    sudo wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm 
-    sudo wget https://rpms.remirepo.net/enterprise/remi-release-8.rpm 
+    sudo curl -o https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm 
+    sudo curl -o https://rpms.remirepo.net/enterprise/remi-release-8.rpm 
     sudo dnf module reset php
     sudo dnf update -y
-    sudo dnf install php php-gd php-mbstring php-intl php-pecl-apcu php-mysqlnd php-opcache php-json php-zip mariadb mariadb-server redis firewalld 
+    sudo dnf install -y php php-gd php-mbstring php-intl php-pecl-apcu php-mysqlnd php-opcache php-json php-zip mariadb mariadb-server redis firewalld 
 
     SHELL
   end
@@ -90,10 +90,10 @@ Vagrant.configure("2") do |config|
       dnf makecache
       dnf update 
       dnf install -y yum 
-      yum install mariadb-server php-mysqlnd
+      yum install -y mariadb-server php-mysqlnd
       cd /tmp
       curl https://Nextclouddownload.nextcloud.com/server/releases/nextcloud-19.0.0.zip -o /var/www/html/nextcloud-19.0.0.zip
-      sudo unzip /var/www/html/nextcloud-19.0.0.zip
+      sudo unzip -y /var/www/html/nextcloud-19.0.0.zip
       sudo dnf install -y unzip 
       sudo yum install -y policycoreutils-python-utils
       sudo mv /tmp/nextcloud /var/www/html/
@@ -104,7 +104,7 @@ Vagrant.configure("2") do |config|
       setsebool -P httpd_can_network_connect_db 1
       setsebool -P httpd_execmem 
       sed -i '/^memory_limit =/s/=.*/= 512M/' /etc/php.ini
-      sudo yum install php-xmlwriter 
+      sudo yum install -y php-xmlwriter 
       yum install -y php-opcache
       yum install -y redis
 
