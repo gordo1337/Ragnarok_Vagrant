@@ -122,13 +122,3 @@ Vagrant.configure("2") do |config|
       SHELL
     
 end
-      setsebool -P httpd_execmem 1
-      sed -i '/^memory_limit =/s/=.*/= 512M/' /etc/php.ini
-      sudo yum install php-xmlwriter 
-      yum install -y php-opcache
-      yum install -y redis
-      #dnf install -y dhcp-server
-
-      SHELL
-    
-end
