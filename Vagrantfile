@@ -26,6 +26,20 @@ Vagrant.configure("2") do |config|
     #config.vm.network "private_network", type: "dhcp"
     #config.vm.network "private_network", guest: 5433, host: 80, type: "dhcp"
     #config.vm.network "private_network", ip:"192.168.33.20", type: "dhcp" 
+    #sudo dnf install -y httpd
+    #sudo dnf install http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+    #sudo dnf install yum-utils
+    #php-redis php-imagick 
+    #sudo dnf install -y php php-gd php-mbstring php-intl php-pecl-apcu\php-mysqlnd php-opcache php-json php-zip
+    #sudo dnf install -y php-redis php-imagick
+    #sudo dnf install -y mariadb mariadb-server
+    #sudo dnf install -y redis
+    #sudo dnf install firewalld 
+    #systemctl start ("firewalld | mariadb.service | php.service") 
+    #systemctl enable (firewalld | mariadb.service | php.service")
+    #sudo firewall-cmd --reload
+    #sudo mkdir /var/lib/mysql/dbnextmiljo
+    #mount -t /var/lib/mysql/dbmiljo
     config.vm.network "private_network", ip:"192.168.33.20", type: "dhcp"
     config.vm.network "forwarded_port", guest: 111, host: 2049, type: "nfs", disabled: true
     config.vm.network "forwarded_port", guest: 443, host: 8081, type: "nfs", disabled: true 
@@ -34,36 +48,22 @@ Vagrant.configure("2") do |config|
     config.vm.synced_folder '../etc', "/etc/", type: "nfs", disabled: true
     config.vm.provision "shell", inline: <<-SHELL
     sudo dnf makecache
-    sudo dnf install bind bind-utils -y
-    sudo dnf update -y
-    sudo dnf install epel-release yum-utils unzip curl wget bash-completion policycoreutils-python-utils mlocate bzip2 httpd y
-    sudo dnf update -y
+    sudo dnf install -y bind bind-utils
+    sudo dnf update
+    sudo dnf install epel-release yum-utils unzip curl wget bash-completion policycoreutils-python-utils mlocate bzip2 httpd 
+    sudo dnf -y update
     semanage fcontext -a -t httpd_sys_rw_content_t '/var/www/html/nextcloud/data(/.*)?'
     semanage fcontext -a -t httpd_sys_rw_content_t '/var/www/html/nextcloud/config(/.*)?'
     semanage fcontext -a -t httpd_sys_rw_content_t '/var/www/html/nextcloud/apps(/.*)?'
     semanage fcontext -a -t httpd_sys_rw_content_t '/var/www/html/nextcloud/.htaccess'      
     semanage fcontext -a -t httpd_sys_rw_content_t '/var/www/html/nextcloud/.user.ini'
-    #sudo dnf install -y httpd
-    #sudo dnf install http://rpms.remirepo.net/enterprise/remi-release-8.rpm
-    #sudo dnf install yum-utils
-    sudo wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm -y
-    sudo wget https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
+    sudo wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm 
+    sudo wget https://rpms.remirepo.net/enterprise/remi-release-8.rpm 
     sudo dnf module reset php
     sudo dnf update -y
-    sudo dnf install php php-gd php-mbstring php-intl php-pecl-apcu php-mysqlnd php-opcache php-json php-zip mariadb mariadb-server redis firewalld -y
-#php-redis php-imagick 
- #   sudo dnf install -y php php-gd php-mbstring php-intl php-pecl-apcu\php-mysqlnd php-opcache php-json php-zip
- #   sudo dnf install -y php-redis php-imagick
- #   sudo dnf install -y mariadb mariadb-server
- #   sudo dnf install -y redis
- #   sudo dnf install firewalld 
-    #systemctl start ("firewalld | mariadb.service | php.service") 
-    #systemctl enable (firewalld | mariadb.service | php.service")
-    #sudo firewall-cmd --reload
-    #sudo mkdir /var/lib/mysql/dbnextmiljo
-    #mount -t /var/lib/mysql/dbmiljo
+    sudo dnf install php php-gd php-mbstring php-intl php-pecl-apcu php-mysqlnd php-opcache php-json php-zip mariadb mariadb-server redis firewalld 
+
     SHELL
-    #config.vm.synced_folder "dbmiljo/", "/var/lib/mysql/dbmiljo", disabled: false
   end
       config.vm.define "nextmiljo" do |server|
       config.vm.hostname = "nextmiljo.local"
@@ -77,14 +77,7 @@ Vagrant.configure("2") do |config|
       #sudo tar -xvjf nextcloud-17-latest.tar.bz2 
       #dnf install -y nextcloud-17-latest.tar.bz2 
       #config.vm.synced_folder "db/", "/var/lib/mysql/dbmiljo", disabled: false
-      config.vm.provision "shell", inline: <<-SHELL
-      dnf makecache
-      dnf update 
-      dnf install yum -y 
-      yum install mariadb-server php-mysqlnd
-      cd /tmp
-      sudo curl -o nextcloud-17-latest.tar.bz2 https://download.nextcloud.com/server/releases/latest-17.tar.bz2 -y
-      #line 83 maybe unzip instead of tar but then use this instead: 
+       #line 83 maybe unzip instead of tar but then use this instead: 
       #curl https://Nextclouddownload.nextcloud.com/server/releases/nextcloud-19.0.0.zip -o /var/www/html/nextcloud-19.0.0.zip
       #sudo unzip /var/www/html/nextcloud-19.0.0.zip
       #sudo dnf install unzip -y
@@ -93,13 +86,20 @@ Vagrant.configure("2") do |config|
       #sudo mkdir /var/www/html/nextcloud/data
       #sudo chown -R apache:apache /var/www/html/nextcloud/
       #sudo chgrp -R apache /var/lib/php/{opcache,session,wsdlcache}
-      sudo tar -xvjf nextcloud-17-latest.tar.bz2  -y
-      dnf install nextcloud-17-latest.tar.bz2 -y
+      config.vm.provision "shell", inline: <<-SHELL
+      dnf makecache
+      dnf update 
+      dnf install -y yum 
+      yum install mariadb-server php-mysqlnd
+      cd /tmp
+      sudo curl -o nextcloud-17-latest.tar.bz2 https://download.nextcloud.com/server/releases/latest-17.tar.bz2 
+      sudo tar -xvjf nextcloud-17-latest.tar.bz2
+      dnf install -y nextcloud-17-latest.tar.bz2 
       sudo mkdir /etc/httpd/conf.d/nextcloud.conf
       sudo vi /etc/httpd/conf.d/nextcloud.conf/ALIAS.D
       sudo mkdir /var/www/html/nextcloud/data
       sudo chown -R apache:apache nextcloud
-      sudo rm nextcloud-17-latest.tar.bz2 -y
+      sudo rm -y nextcloud-17-latest.tar.bz2
       sudo mv /tmp/nextcloud /var/www/html/
       sudo cd .. /var/www/html/nextcloud
       sudo chown -R apache:apache /var/www/html/nextcloud/
@@ -114,8 +114,6 @@ Vagrant.configure("2") do |config|
       setsebool -P httpd_can_network_connect_db 1
       setsebool -P httpd_execmem 1
       sed -i '/^memory_limit =/s/=.*/= 512M/' /etc/php.ini
-      systemctl enable --now httpd
-      sudo yum install -y vim
       sudo yum install php-xmlwriter 
       yum install -y php-opcache
       yum install -y redis
