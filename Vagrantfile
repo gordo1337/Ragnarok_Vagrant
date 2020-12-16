@@ -8,6 +8,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder '../var', "/var/www/html/nextcloud/",  type: "nfs", disabled: true
   #config.vm.synced_folder "dbmiljo/", "/var/lib/mysql/dbmiljo", disabled: false
   #config.vm.network "forwarded_port", guest: 5432, host: 54320 # nextcloud
+  #config.vm.network "public_network", ip: "192.168.33.4"
   config.vm.network "private_network", ip: "192.168.33.4", type: "dhcp"
   config.vm.network "forwarded_port", guest: 111, host: 2049 #, type: "nfs", disabled: true 
   config.vm.network "forwarded_port", guest: 443, host: 8081 #, type: "nfs", disabled: true 
@@ -32,6 +33,7 @@ Vagrant.configure("2") do |config|
     #sudo mkdir /var/lib/mysql/dbnextmiljo
     #mount -t /var/lib/mysql/dbmiljo
      #config.vm.synced_folder "dbmiljo/", "/var/lib/mysql/dbmiljo", disabled: false
+    #config.vm.network "public_network", ip:"192.168.33.20"
     config.vm.network "private_network", ip:"192.168.33.20", type: "dhcp"
     config.vm.network "forwarded_port", guest: 111, host: 2049, type: "nfs", disabled: true
     config.vm.network "forwarded_port", guest: 443, host: 8081, type: "nfs", disabled: true 
@@ -57,6 +59,7 @@ Vagrant.configure("2") do |config|
   end
       config.vm.define "nextmiljo" do |server|
       config.vm.hostname = "nextmiljo.local"
+      #config.vm.network "public_network", ip:"192.168.33.20"
       config.vm.network "private_network", type: "dhcp"
       config.vm.network :private_network, ip: "192.168.33.10", type: "dhcp" 
       config.vm.network "forwarded_port", guest: 111, host: 2049, type: "nfs", disabled: true
