@@ -40,7 +40,9 @@ $ my_secure_sql
 $ systemctl enable firewalld | mariadb.service | php.service |
 $ systemctl start  firewalld | mariadb.service | php.service |
 $ systemctl status  firewalld-cmd | mariadb.service | php.service |
-Backup dbmiljo 
+$ mysql -u root -p
+
+#  Backup dbmiljo: 
 
 $ nvim home/example_user/.mylogin.cnf :
 
