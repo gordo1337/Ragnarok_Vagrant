@@ -1,14 +1,23 @@
-# README.md RAGNARÖK 
+ README.md RAGNAROK 
 
 # IMPORTANT # When you have cloned the repository you have to change UID (501) to you UID in
 # And if you dont know you id, do the " $ vagrant up " first then it will show up. 
 # But here is the path etherway : 
 $  sudo nvim Ragnarok_Vagrant/.vagrant/machines/dbmiljo/virtualbox/creatoruid 
 $  sudo nvim Ragnarok_Vagrant/.vagrant/machines/nextmiljo/virtualbox/creatoruid
-######################################################################################################################
-# █▀█ ▄▀█ █▀▀ █▄░█ ▄▀█ █▀█ █▀█ █▄▀   ▀▄▀   █░█ ▄▀█ █▀▀ █▀█ ▄▀█ █▄░█ ▀█▀   ▀▄▀   █▄░█ █▀▀ ▀▄▀ ▀█▀ █▀▀ █░░ █▀█ █░█ █▀▄ #
-# █▀▄ █▀█ █▄█ █░▀█ █▀█ █▀▄ █▄█ █░█   █░█   ▀▄▀ █▀█ █▄█ █▀▄ █▀█ █░▀█ ░█░   █░█   █░▀█ ██▄ █░█ ░█░ █▄▄ █▄▄ █▄█ █▄█ █▄▀ #
-######################################################################################################################
+#
+##########################################################################################
+##########################################################################################
+#'########:::::'###:::::'######:::'##::: ##::::'###::::'########:::'#######::'##:::'##::::#
+# ##.... ##:::'## ##:::'##... ##:: ###:: ##:::'## ##::: ##.... ##:'##.... ##: ##::'##:::::#
+# ##:::: ##::'##:. ##:: ##:::..::: ####: ##::'##:. ##:: ##:::: ##: ##:::: ##: ##:'##::::::#
+# ########::'##:::. ##: ##::'####: ## ## ##:'##:::. ##: ########:: ##:::: ##: #####:::::::#
+# ##.. ##::: #########: ##::: ##:: ##. ####: #########: ##.. ##::: ##:::: ##: ##. ##::::::#
+# ##::. ##:: ##.... ##: ##::: ##:: ##:. ###: ##.... ##: ##::. ##:: ##:::: ##: ##:. ##:::::#
+# ##:::. ##: ##:::: ##:. ######::: ##::. ##: ##:::: ##: ##:::. ##:. #######:: ##::. ##::::#
+###########################################################################################
+###########################################################################################
+
 # The manual guides you with: 
 # - Setting up a Nextcloud Server 
 # - Setting up a Database With Mysql Mariadb PHP Httpd 
@@ -32,7 +41,7 @@ $ systemctl enable firewalld | mariadb.service | php.service |
 $ systemctl start  firewalld | mariadb.service | php.service |
 $ systemctl status  firewalld-cmd | mariadb.service | php.service |
 Backup dbmiljo 
---------------
+
 $ nvim home/example_user/.mylogin.cnf :
 
 [client]
@@ -42,7 +51,6 @@ password = MySQL root user's password
 wq 
 
 $ chmod 600 /home/example_user/.mylogin.cnf
-
 
 # Create the cron job file. Below is an example cron job to back up the entire database management system every day at 1am:
 /etc/cron.daily/mysqldump :
@@ -108,14 +116,13 @@ Alias /nextcloud "/var/www/html/nextcloud/"
  $ firewall-cmd --add-service https --permanent
  $ firewall-cmd --reload
 
- # when that is done, you type in to your url "http://YOUR_IP_ADDRESS/nextcloud/"
+ # when that is done, you type in to your url:  "http://YOUR_IP_ADDRESS/nextcloud/"
  # then click storage & database
  # then selectt datafolder
  # !!!![if you dont know what you're doing, do not touch anything on "DATABASE" it will be autoconfiged]!!!
  # if you know how to handle it, then go to database. 
 $ Enable OPcache
 $ vim  /etc/php.d/10-opcache.ini
-
 # Enable Zend OPcache extension module
 $ zend_extension=opcache.so
 $ opcache.enable=1
@@ -167,7 +174,6 @@ systemctl restart httpd php-fpm
 #edit this conf file with vim 
 vim /etc/httpd/conf.d/nextcloud.conf
 # Copy and paste this below 
-
 <VirtualHost *:80>
   ServerName YOURDOMAIN.TLD
   ServerAdmin YOUR@EMAIL.TLD
