@@ -1,11 +1,11 @@
  README.md RAGNAROK 
  Demo : https://www.youtube.com/watch?v=VZkKTLSKNek&t=1s
 
-# IMPORTANT # When you have cloned the repository you have to change UID (501) to you UID in
+# IMPORTANT # When you have cloned the repository you have to change UID (501) to your UID 
 # And if you dont know you id, do the " $ vagrant up " first then it will show up. 
-# But here is the path etherway : 
-$  sudo nvim Ragnarok_Vagrant/.vagrant/machines/dbmiljo/virtualbox/creatoruid 
-$  sudo nvim Ragnarok_Vagrant/.vagrant/machines/nextmiljo/virtualbox/creatoruid
+#  here is the pathway : 
+$  sudo vim Ragnarok_Vagrant/.vagrant/machines/dbmiljo/virtualbox/creatoruid 
+$  sudo vim Ragnarok_Vagrant/.vagrant/machines/nextmiljo/virtualbox/creatoruid
 #
 ##########################################################################################
 ##########################################################################################
