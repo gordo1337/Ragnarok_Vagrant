@@ -1,4 +1,5 @@
- README.md RAGNAROK 
+
+README.md RAGNAROK 
  Demo : https://www.youtube.com/watch?v=VZkKTLSKNek&t=1s
 
 # IMPORTANT # When you have cloned the repository you have to change UID (501) to your UID 
@@ -196,3 +197,4 @@ $ sudo -u apache php /var/www/html/nextcloud/occ config:system:set trusted_domai
 $ systemctl restart httpd
 
 # Ragnarok_Vagrant
+
